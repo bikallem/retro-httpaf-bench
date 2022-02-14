@@ -8,6 +8,14 @@
 	path = httpaf-eio/vendor/angstrom
 	url = https://github.com/talex5/angstrom.git
 [submodule "cohttp-eio/ocaml-cohttp"]
-	path = cohttp-eio/vendor/ocaml-cohttp
+	path = cohttp-eio-parser-angstrom/vendor/ocaml-cohttp
 	url = git@github.com:bikallem/ocaml-cohttp.git
 	branch = eio-3
+[submodule "cohttp-eio-cohttp-parser/ocaml-cohttp"]
+	path = cohttp-eio-parser-http/vendor
+	url = https://github.com/bikallem/ocaml-cohttp.git
+	branch = eio-3-cohttp-parser
+[submodule "cohttp-eio-parser-custom/ocaml-cohttp"]
+	path = cohttp-eio-parser-custom/vendor
+	url = https://github.com/bikallem/ocaml-cohttp.git
+	branch = eio-3-custom-parser

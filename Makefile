@@ -1,6 +1,8 @@
 retro=retro-httpaf-bench
 
-IMAGES = cohttp-eio \
+IMAGES = cohttp-eio-parser-angstrom \
+				 cohttp-eio-parser-custom \
+				 cohttp-eio-parser-http \
 				 httpaf-eio \
 				 httpaf-effects \
 				 cohttp-lwt-unix \
@@ -23,7 +25,9 @@ run: build
 main: build-dir
 	docker build $(nc) -t $(retro) .
 
-build: cohttp-eio \
+build: cohttp-eio-parser-angstrom \
+	cohttp-eio-parser-custom \
+	cohttp-eio-parser-http \
 	httpaf-eio \
 	httpaf-effects \
 	cohttp-lwt-unix \
@@ -31,7 +35,7 @@ build: cohttp-eio \
 	httpaf-shuttle-async \
 	nethttp-go \
 	rust-hyper
-	docker build -t $(nc) $(retro) .
+	docker build $(nc) -t $(retro) .
 
 build-dir:
 	mkdir -p build

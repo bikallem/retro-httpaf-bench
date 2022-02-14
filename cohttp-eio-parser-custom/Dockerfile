@@ -8,4 +8,4 @@ RUN opam install ppx_cstruct dune fmt logs cstruct faraday mtime optint lwt-dlli
 COPY --chown=opam . /src
 RUN sudo chown opam .
 RUN opam exec -- dune build --profile=release
-RUN sudo mv /src/_build/default/cohttp_eio.exe /src/cohttp-eio.exe
+RUN sudo mv /src/_build/default/cohttp_eio.exe /src/cohttp-eio-parser-custom.exe
