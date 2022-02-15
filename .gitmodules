@@ -10,7 +10,7 @@
 [submodule "cohttp-eio/ocaml-cohttp"]
 	path = cohttp-eio-parser-angstrom/vendor/ocaml-cohttp
 	url = git@github.com:bikallem/ocaml-cohttp.git
-	branch = eio-3
+	branch = eio-3-angstrom-parser
 [submodule "cohttp-eio-cohttp-parser/ocaml-cohttp"]
 	path = cohttp-eio-parser-http/vendor
 	url = https://github.com/bikallem/ocaml-cohttp.git
