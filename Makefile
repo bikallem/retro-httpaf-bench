@@ -1,7 +1,6 @@
 retro=retro-httpaf-bench
 
 IMAGES = cohttp-eio-parser-angstrom \
-				 cohttp-eio-parser-custom \
 				 cohttp-eio-parser-http \
 				 httpaf-eio \
 				 httpaf-effects \
@@ -26,7 +25,6 @@ main: build-dir
 	docker build $(nc) -t $(retro) .
 
 build: cohttp-eio-parser-angstrom \
-	cohttp-eio-parser-custom \
 	cohttp-eio-parser-http \
 	httpaf-eio \
 	httpaf-effects \

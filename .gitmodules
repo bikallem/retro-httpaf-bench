@@ -15,7 +15,3 @@
 	path = cohttp-eio-parser-http/vendor
 	url = https://github.com/bikallem/ocaml-cohttp.git
 	branch = eio-3-cohttp-parser
-[submodule "cohttp-eio-parser-custom/ocaml-cohttp"]
-	path = cohttp-eio-parser-custom/vendor
-	url = https://github.com/bikallem/ocaml-cohttp.git
-	branch = eio-3-custom-parser
