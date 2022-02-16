@@ -80,7 +80,7 @@ let () =
   (* Eio_luv.run @@ fun env -> *)
   Eio_linux.run ~queue_depth:2048 ?polling_timeout @@ fun env ->
   let n_domains =
-    match Sys.getenv_opt "COHTTP_DOMAINS" with
+    match Sys.getenv_opt "HTTPAF_DOMAINS" with
     | Some d -> int_of_string d
     | None -> 1
   in

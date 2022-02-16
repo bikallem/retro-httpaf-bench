@@ -37,19 +37,11 @@ let app req =
   | "/exit" -> exit 0
   | _ -> Response.not_found
 
-let polling_timeout =
-  if Unix.getuid () = 0 then Some 2000
-  else (
-    print_endline
-      "Warning: not running as root, so running in slower non-polling mode";
-    None)
-
 let () =
   let port = ref 8080 in
   Arg.parse
     [ ("-p", Arg.Set_int port, " Listening port number(8080 by default)") ]
     ignore "An HTTP/1.1 server";
 
-  let server = Server.create ~port:!port app in
-  Eio_linux.run ~queue_depth:2048 ?polling_timeout @@ fun env ->
-  Server.run server (env :> Eio.Stdenv.t)
+  let server = Server.create ~domains:1 ~port:!port app in
+  Server.run server 
