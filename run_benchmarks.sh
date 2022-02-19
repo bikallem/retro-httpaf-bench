@@ -25,8 +25,8 @@ for cmd in "httpaf_eio.exe" "cohttp_eio_parser_http.exe" "cohttp_eio_parser_cust
       running_pid=$!
       sleep 2;
       ./build/wrk2 -t 24 -d${run_duration}s -L -s ./build/json.lua -R $rps -c $cons http://localhost:8080 > output/run-$cmd-$rps-$cons.txt;
-       curl http://localhost:8080/exit
-      # kill ${running_pid};
+       # curl http://localhost:8080/exit
+      kill ${running_pid};
       sleep 1;
     done
   done
