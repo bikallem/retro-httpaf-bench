@@ -2,6 +2,7 @@ retro=retro-httpaf-bench
 
 IMAGES = cohttp-eio-parser-http \
 				 cohttp-eio-parser-angstrom \
+				 cohttp-eio-parser-custom \
 				 httpaf-eio \
 				 httpaf-effects \
 				 cohttp-lwt-unix \
@@ -26,6 +27,7 @@ main: build-dir
 
 build: cohttp-eio-parser-http \
 	cohttp-eio-parser-angstrom \
+	cohttp-eio-parser-custom \
 	httpaf-eio \
 	httpaf-effects \
 	cohttp-lwt-unix \

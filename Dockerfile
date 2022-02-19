@@ -1,7 +1,9 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
-RUN apt update && apt install -y libgmp-dev libev4 libev-dev pkg-config build-essential libssl-dev libz-dev cmake python3-virtualenv python3-pip wget unzip && dpkg-reconfigure --frontend noninteractive tzdata
+RUN apt update 
+RUN apt install -y libgmp-dev libev4 libev-dev pkg-config build-essential libssl-dev libz-dev cmake python3-virtualenv python3-pip wget unzip curl
+RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN mkdir ./build
 WORKDIR ./build
 
