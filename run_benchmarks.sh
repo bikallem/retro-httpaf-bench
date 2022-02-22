@@ -6,7 +6,7 @@ run_duration="${RUN_DURATION:-30}"
 export GOMAXPROCS=1
 export COHTTP_DOMAINS=24
 export HTTPAF_DOMAINS=24
-export OCAMLRUNPARAM="v=0x400"
+export OCAMLRUNPARAM="v=0x400,s=4000000"
 
 rm -rf output/*
 mkdir -p output
