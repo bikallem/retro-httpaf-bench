@@ -20,16 +20,17 @@ mkdir -p output
 # for cmd in "httpaf_eio.exe" ; do
 # for rps in 1000 50000 75000 150000 300000 400000; do
   for rps in 150000 300000 400000 800000 1500000; do
-  # for rps in 1500000; do
-    for cons in 1000; do
-      ./build/$cmd &
-      running_pid=$!
-      sleep 2;
-      ./build/wrk2 -t 24 -d${run_duration}s -L -s ./build/json.lua -R $rps -c $cons http://localhost:8080 > output/run-$cmd-$rps-$cons.txt;
-      # curl http://localhost:8080/exit
-      kill ${running_pid};
-      sleep 1;
-    done
+  # for rps in 1 6 12 24 48; do
+    # export HTTPAF_DOMAINS=${rps}
+    # export GOMAXPROCS=${rps}
+    ./build/$cmd &
+    running_pid=$!
+    sleep 2;
+    ./build/wrk2 -t 24 -d${run_duration}s -L -s ./build/json.lua -R $rps -c $cons http://localhost:8080 > output/run-$cmd-$rps-$cons.txt;
+    # ./build/wrk2 -t 24 -d${run_duration}s -L -s ./build/json.lua -R 1500000 -c 1000 http://localhost:8080 > output/run-$cmd-$rps-1000.txt;
+    # curl http://localhost:8080/exit
+    kill ${running_pid};
+    sleep 1;
   done
 done
 

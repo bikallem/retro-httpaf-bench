@@ -1,6 +1,9 @@
-FROM rust:alpine3.15
-RUN apk add --no-cache musl-dev
+FROM rust:1.44
+
 WORKDIR /src
 COPY . /src
-RUN cargo build --release
+
+RUN cargo clean
+RUN RUSTFLAGS="-C target-cpu=native" cargo build --release
+
 RUN mv target/release/rust-hyper /src/rust-hyper.exe
