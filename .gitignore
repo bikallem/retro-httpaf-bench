@@ -4,3 +4,4 @@
 *.nix
 output*/**
 build
+.ipynb_checkpoints
