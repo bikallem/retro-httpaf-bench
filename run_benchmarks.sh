@@ -1,31 +1,32 @@
 #!/bin/bash
 set -xe
 
-run_duration="${RUN_DURATION:-30}"
+run_duration="${RUN_DURATION:-60}"
 
-export GOMAXPROCS=1
-# export COHTTP_DOMAINS=24
-# export HTTPAF_DOMAINS=24
-# export RUST_CORES=24
+export GOMAXPROCS=24
+export COHTTP_DOMAINS=24
+export HTTPAF_DOMAINS=24
+export RUST_CORES=24
 # export OCAMLRUNPARAM="v=0x400"
 
 rm -rf output/*
 mkdir -p output
 
 # for cmd in "cohttp_eio_parser_http.exe" "httpaf_eio.exe" "rust_hyper.exe" "cohttp_lwt_unix.exe" "httpaf_lwt.exe" "httpaf_effects.exe" "nethttp_go.exe" "httpaf_shuttle_async.exe"; do
-for cmd in "cohttp_eio_parser_http.exe" "cohttp_eio_parser_custom.exe" "httpaf_eio.exe" "rust_hyper.exe" "httpaf_lwt.exe" "nethttp_go.exe" "httpaf_shuttle_async.exe"; do
- # for cmd in "httpaf_eio.exe" "rust_hyper.exe" "nethttp_go.exe"; do
+# for cmd in "cohttp_eio_parser_http.exe" "cohttp_eio_parser_custom.exe" "httpaf_eio.exe" "rust_hyper.exe" "httpaf_lwt.exe" "nethttp_go.exe" "httpaf_shuttle_async.exe" "cohttp_lwt_unix.exe"; do
+for cmd in "httpaf_eio.exe" "cohttp_eio_parser_custom.exe" "rust_hyper.exe" "nethttp_go.exe"; do
 # for cmd in "httpaf_eio.exe" "cohttp_eio_parser_http.exe" "cohttp_eio_parser_custom.exe" ; do
 # for cmd in "cohttp_eio_parser_http.exe"; do
 # for cmd in "cohttp_eio_parser_custom.exe" ; do
 # for cmd in "httpaf_eio.exe" ; do
-for rps in 1000 50000 75000 150000 300000 400000; do
-  # for rps in 150000 300000 400000 800000 1500000; do
+# for rps in 1000 50000 75000 150000 300000 400000; do
+  for rps in 150000 300000 400000 800000 1500000; do
   # CPU cores scalability testing
   # for rps in 1 6 12 24 48; do
-    # export HTTPAF_DOMAINS=${rps}
-    # export GOMAXPROCS=${rps}
-    # export RUST_CORES=${rps}
+  #   export HTTPAF_DOMAINS=${rps}
+  #   export GOMAXPROCS=${rps}
+  #   export RUST_CORES=${rps}
+  #   export COHTTP_DOMAINS=${rps}
     ./build/$cmd &
     running_pid=$!
     sleep 2;
