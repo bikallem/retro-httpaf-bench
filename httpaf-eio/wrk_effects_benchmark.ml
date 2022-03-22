@@ -49,7 +49,7 @@ let main ~net ~domain_mgr ~n_domains port backlog =
   traceln "Echo server listening on 127.0.0.1:%d" port;
   traceln "Starting %d domains..." n_domains;
   for _ = 2 to n_domains do
-    Fibre.fork ~sw (fun () ->
+    Fiber.fork ~sw (fun () ->
         Eio.Domain_manager.run domain_mgr
           (fun () ->
              (* Note: really we should dup [ssock] for each domain,
@@ -60,12 +60,12 @@ let main ~net ~domain_mgr ~n_domains port backlog =
   done;
   run_domain ssock
 
-(* let polling_timeout = *)
-(*   if Unix.getuid () = 0 then Some 2000 *)
-(*   else ( *)
-(*     print_endline "Warning: not running as root, so running in slower non-polling mode"; *)
-(*     None *)
-(*   ) *)
+let polling_timeout =
+  if Unix.getuid () = 0 then Some 2000
+  else (
+    print_endline "Warning: not running as root, so running in slower non-polling mode";
+    None
+  )
 
 let () = 
 (*
@@ -78,8 +78,8 @@ let () =
   Ctf.Control.start trace_config;
 *)
   (* Eio_luv.run @@ fun env -> *)
-  (* Eio_linux.run ~queue_depth:2048 ?polling_timeout @@ fun env -> *)
-  Eio_main.run @@ fun env -> 
+  Eio_linux.run ~queue_depth:2048 ?polling_timeout @@ fun env ->
+  (* Eio_main.run @@ fun env -> *) 
   let n_domains =
     match Sys.getenv_opt "HTTPAF_DOMAINS" with
     | Some d -> int_of_string d
